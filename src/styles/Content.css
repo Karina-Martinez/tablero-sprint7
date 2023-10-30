@@ -90,3 +90,21 @@
   margin-bottom: 10px;
   align-self: center;
 }
+
+.task-status-select {
+  width: 20%;
+  padding: 0.5rem;
+  margin: 20px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+}
+
+.task-status-select option {
+  padding: 0.5rem;
+}
+
+.task-status-select:focus {
+  outline: none;
+  border-color: #ccc;
+}

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../styles/Content.css";
 
-function Task({ task, onEdit, onDelete }) {
+function Task({ task, onEdit, onDelete, status }) {
   const [isEditing, setIsEditing] = useState(false);
   const [editedTask, setEditedTask] = useState({ ...task });
 
@@ -33,8 +33,9 @@ function Task({ task, onEdit, onDelete }) {
         </div>
       ) : (
         <div>
-          <h3>{task.title}</h3>
-          <p>{task.description}</p>
+          <h3>{editedTask.title}</h3>
+          <p>{editedTask.description}</p>
+          <p>Status: {status}</p>
           <button className="edit-button" onClick={() => setIsEditing(true)}>
             Editar
           </button>
