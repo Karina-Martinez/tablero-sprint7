@@ -55,7 +55,7 @@ function Content() {
       project.id === selectedProjectId
         ? {
             ...project,
-            tasks: [...project.tasks, { ...newTask, id: Date.now() }],
+            tasks: [...project.tasks, { ...newTask, id: Date.now(), status: newTask.status }],
           }
         : project
     );
@@ -99,6 +99,11 @@ function Content() {
             onChange={(e) => setNewTask({ ...newTask, description: e.target.value })}
             className="task-description-textarea"
           />
+          <select class="task-status-select" value={newTask.status} onChange={(e) => setNewTask({ ...newTask, status: e.target.value })}>
+            <option value="todo">Por hacer</option>
+            <option value="in-progress">En proceso</option>
+            <option value="done">Hecho</option>
+          </select>
           <button onClick={addTask} className="add-task-button">
             Añadir Tarea
           </button>

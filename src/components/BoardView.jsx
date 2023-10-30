@@ -17,17 +17,19 @@ function BoardView({ tasks, onEdit, onDelete }) {
             task={task}
             onEdit={onEdit}
             onDelete={onDelete}
+            status="por hacer"
           />
         ))}
       </div>
       <div className="board-column">
-        <h2>En progreso</h2>
+        <h2>En proceso</h2>
         {inProgressTasks.map((task) => (
           <Task
             key={task.id}
             task={task}
             onEdit={onEdit}
             onDelete={onDelete}
+            status="en proceso"
           />
         ))}
       </div>
@@ -39,6 +41,7 @@ function BoardView({ tasks, onEdit, onDelete }) {
             task={task}
             onEdit={onEdit}
             onDelete={onDelete}
+            status="hecho"
           />
         ))}
       </div>
