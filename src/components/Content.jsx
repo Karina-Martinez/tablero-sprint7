@@ -13,6 +13,33 @@ function Content() {
 
   const selectedProject = projects.find((project) => project.id === selectedProjectId);
 
+  const [newProjectName, setNewProjectName] = useState('');
+
+  const handleEditProject = (projectId, newProjectName) => {
+    setProjects((prevProjects) => {
+      const updatedProjects = prevProjects.map((project) => {
+        if (project.id === projectId) {
+          return {
+            ...project,
+            name: newProjectName
+          };
+        }
+        return project;
+      });
+      return updatedProjects;
+    });
+  };
+
+  const handleAddProject = () => {
+    const newProject = {
+      id: Date.now(),
+      name: newProjectName,
+      tasks: []
+    };
+    setProjects([...projects, newProject]);
+    setNewProjectName('');
+  };
+
   const [newTask, setNewTask] = useState({ title: "", description: "", status: "todo" });
 
   const handleEditTask = (editedTask) => {
@@ -70,20 +97,32 @@ function Content() {
   return (
     <div className="content">
       <div className="content-container">
-        <h2>Proyectos</h2>
-        <div>
-          <ul>
-            {projects.map((project) => (
-              <li
-                key={project.id}
-                onClick={() => switchProject(project.id)}
-                className="project-item"
-              >
-                {project.name}
-              </li>
-            ))}
-          </ul>
-        </div>
+      <h2>Proyectos</h2>
+        <ul>
+          {projects.map((project) => (
+            <li
+              key={project.id}
+              onClick={() => switchProject(project.id)}
+              className="project-item"
+            >
+              <input
+                type="text"
+                value={project.name}
+                onChange={(e) => handleEditProject(project.id, e.target.value)}
+              />
+            </li>
+          ))}
+        </ul>
+        <input
+          type="text"
+          placeholder="Nuevo proyecto"
+          value={newProjectName}
+          onChange={(e) => setNewProjectName(e.target.value)}
+          className="new-project-input"
+        />
+        <button onClick={handleAddProject} className="add-project-button">
+          Añadir Proyecto
+        </button>
         <h2>Backlog</h2>
         <div>
           <input

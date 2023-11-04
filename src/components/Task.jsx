@@ -3,7 +3,7 @@ import "../styles/Content.css";
 
 function Task({ task, onEdit, onDelete, status }) {
   const [isEditing, setIsEditing] = useState(false);
-  const [editedTask, setEditedTask] = useState({ ...task });
+  const [editedTask, setEditedTask] = useState({ ...task, status });
 
   const handleEdit = () => {
     onEdit(editedTask);
@@ -12,6 +12,10 @@ function Task({ task, onEdit, onDelete, status }) {
 
   const handleDelete = () => {
     onDelete(task.id);
+  };
+
+  const handleChangeStatus = (e) => {
+    setEditedTask({ ...editedTask, status: e.target.value });
   };
 
   return (
@@ -27,6 +31,14 @@ function Task({ task, onEdit, onDelete, status }) {
             value={editedTask.description}
             onChange={(e) => setEditedTask({ ...editedTask, description: e.target.value })}
           />
+          <select
+            value={editedTask.status}
+            onChange={handleChangeStatus}
+          >
+            <option value="todo">Por hacer</option>
+            <option value="in-progress">En proceso</option>
+            <option value="done">Hecho</option>
+          </select>
           <button className="edit-button" onClick={handleEdit}>
             Guardar
           </button>

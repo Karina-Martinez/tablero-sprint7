@@ -108,3 +108,55 @@
   outline: none;
   border-color: #ccc;
 }
+
+.task-card select {
+  width: 100%;
+  margin-bottom: 10px;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.task-card select option {
+  padding: 10px;
+}
+
+.task-card select:focus {
+  outline: 1px solid #ccc;
+}
+
+.new-project-input {
+  max-width: 25%;
+}
+
+/*Animations*/
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Slide-in animation */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Apply the fade-in animation to the content container */
+.content-container {
+  animation: slideIn 0.5s ease-in;
+}
+
+/* Apply the slide-in animation to task cards */
+.task-card {
+  animation: fadeIn 0.5s ease-in;
+}
